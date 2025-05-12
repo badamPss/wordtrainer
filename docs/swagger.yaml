@@ -1,0 +1,188 @@
+basePath: /
+definitions:
+  models.Card:
+    properties:
+      categoryID:
+        type: integer
+      id:
+        type: integer
+      translation:
+        type: string
+      userID:
+        type: integer
+      word:
+        type: string
+    type: object
+  models.Category:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      userID:
+        type: integer
+    type: object
+  models.User:
+    properties:
+      id:
+        type: integer
+      passwordHash:
+        type: string
+      telegramID:
+        description: Можно не использовать, но оставим как уникальный логин
+        type: string
+      username:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: API для приложения Word Trainer
+  title: Word Trainer API
+  version: "1.0"
+paths:
+  /cards:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает список всех карточек пользователя
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Список карточек
+          schema:
+            items:
+              $ref: '#/definitions/models.Card'
+            type: array
+        "401":
+          description: Требуется авторизация
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка карточек
+      tags:
+      - cards
+  /categories:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает список всех категорий пользователя
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Список категорий
+          schema:
+            items:
+              $ref: '#/definitions/models.Category'
+            type: array
+        "401":
+          description: Требуется авторизация
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Получение списка категорий
+      tags:
+      - categories
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Аутентификация пользователя и получение JWT токена
+      parameters:
+      - description: Данные для входа
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: JWT токен
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Неверные данные
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Неверные учетные данные
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Вход в систему
+      tags:
+      - auth
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Создает нового пользователя в системе
+      parameters:
+      - description: Данные пользователя
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Пользователь успешно создан
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Неверные данные
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Регистрация нового пользователя
+      tags:
+      - auth
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
