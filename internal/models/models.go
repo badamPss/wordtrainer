@@ -14,11 +14,11 @@ type Category struct {
 }
 
 type Card struct {
-	ID          int    `db:"id"`
-	UserID      int    `db:"user_id"`
-	CategoryID  int    `db:"category_id"`
-	Word        string `db:"word"`
-	Translation string `db:"translation"`
+	ID          int    `db:"id" json:"id"`
+	UserID      int    `db:"user_id" json:"user_id"`
+	CategoryID  int    `db:"category_id" json:"category_id"`
+	Word        string `db:"word" json:"word"`
+	Translation string `db:"translation" json:"translation"`
 }
 
 type Attempt struct {

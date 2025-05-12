@@ -2,13 +2,13 @@ basePath: /
 definitions:
   models.Card:
     properties:
-      categoryID:
+      category_id:
         type: integer
       id:
         type: integer
       translation:
         type: string
-      userID:
+      user_id:
         type: integer
       word:
         type: string
@@ -72,6 +72,89 @@ paths:
       summary: Получение списка карточек
       tags:
       - cards
+    post:
+      consumes:
+      - application/json
+      description: Создает новую карточку с английским словом и его переводом в указанной
+        категории
+      parameters:
+      - description: Данные карточки
+        in: body
+        name: card
+        required: true
+        schema:
+          $ref: '#/definitions/models.Card'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Карточка успешно создана
+          schema:
+            $ref: '#/definitions/models.Card'
+        "400":
+          description: Неверные данные
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Требуется авторизация
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Создание новой карточки
+      tags:
+      - cards
+  /cards/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Возвращает карточку по её ID
+      parameters:
+      - description: ID карточки
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Карточка
+          schema:
+            $ref: '#/definitions/models.Card'
+        "401":
+          description: Требуется авторизация
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Карточка не найдена
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Получение карточки по ID
+      tags:
+      - cards
   /categories:
     get:
       consumes:
@@ -101,6 +184,47 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: Получение списка категорий
+      tags:
+      - categories
+    post:
+      consumes:
+      - application/json
+      description: Создает новую категорию для пользователя
+      parameters:
+      - description: Данные категории
+        in: body
+        name: category
+        required: true
+        schema:
+          $ref: '#/definitions/models.Category'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Категория успешно создана
+          schema:
+            $ref: '#/definitions/models.Category'
+        "400":
+          description: Неверные данные
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "401":
+          description: Требуется авторизация
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Внутренняя ошибка сервера
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - ApiKeyAuth: []
+      summary: Создание новой категории
       tags:
       - categories
   /login:

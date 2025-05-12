@@ -23,3 +23,62 @@ go.work.sum
 
 # env file
 .env
+
+# Бинарные файлы
+/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+main
+
+# Тестовые файлы
+*.test
+*.out
+coverage.txt
+
+# IDE и редакторы
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Зависимости
+/vendor/
+
+# Логи
+*.log
+
+# Временные файлы
+tmp/
+temp/
+
+# Файлы окружения
+.env
+.env.local
+.env.*.local
+
+# Docker
+.docker/
+
+# Swagger
+/docs/swagger.json
+/docs/swagger.yaml
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+
+# Файлы сборки
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+*.exe~
+*.test
+*.prof
+*.trace
