@@ -1,4 +1,4 @@
-.PHONY: up down build clean logs
+.PHONY: up down build clean logs test lint swagger migrate migrate-down
 
 # Поднять проект
 up:
@@ -25,6 +25,18 @@ clean:
 # Собрать проект
 build:
 	docker-compose build
+
+# Запустить тесты
+test:
+	go test -v ./...
+
+# Запустить линтер
+lint:
+	golangci-lint run
+
+# Сгенерировать Swagger документацию
+swagger:
+	swag init -g cmd/main.go
 
 # Запустить миграции
 migrate:

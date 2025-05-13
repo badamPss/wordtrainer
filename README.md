@@ -79,6 +79,12 @@ curl --location 'http://localhost:8080/categories' \
 }'
 ```
 
+#### Получение списка категорий
+```bash
+curl --location 'http://localhost:8080/categories' \
+--header 'Authorization: Bearer YOUR_TOKEN'
+```
+
 #### Создание карточки
 ```bash
 curl --location 'http://localhost:8080/cards' \
@@ -88,6 +94,28 @@ curl --location 'http://localhost:8080/cards' \
     "category_id": 1,
     "word": "apple",
     "translation": "яблоко"
+}'
+```
+
+#### Получение списка карточек
+```bash
+curl --location 'http://localhost:8080/cards' \
+--header 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Получение карточки по ID
+```bash
+curl --location 'http://localhost:8080/cards/1' \
+--header 'Authorization: Bearer YOUR_TOKEN'
+```
+
+#### Добавление попытки изучения
+```bash
+curl --location 'http://localhost:8080/cards/1/attempt' \
+--header 'Authorization: Bearer YOUR_TOKEN' \
+--header 'Content-Type: application/json' \
+--data '{
+    "correct": true
 }'
 ```
 
@@ -103,6 +131,11 @@ curl --location 'http://localhost:8080/cards' \
 - `make logs` - посмотреть логи
 - `make clean` - очистить все контейнеры и образы
 - `make build` - собрать проект
+- `make migrate` - применить миграции
+- `make migrate-down` - откатить миграции
+- `make test` - запустить тесты
+- `make lint` - запустить линтер
+- `make swagger` - сгенерировать Swagger документацию
 
 ## Структура проекта
 
@@ -125,3 +158,7 @@ curl --location 'http://localhost:8080/cards' \
 ├── go.sum
 └── Makefile
 ```
+
+## Лицензия
+
+MIT
