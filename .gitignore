@@ -7,6 +7,7 @@
 *.dll
 *.so
 *.dylib
+main
 
 # Test binary, built with `go test -c`
 *.test
@@ -15,47 +16,25 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/
 
 # Go workspace file
 go.work
-go.work.sum
 
-# env file
-.env
-
-# Бинарные файлы
-/bin/
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-main
-
-# Тестовые файлы
-*.test
-*.out
-coverage.txt
-
-# IDE и редакторы
+# IDE specific files
 .idea/
 .vscode/
 *.swp
 *.swo
-*~
 
-# Зависимости
-/vendor/
-
-# Логи
+# Log files
 *.log
 
-# Временные файлы
+# Temporary files
 tmp/
 temp/
 
-# Файлы окружения
+# Environment files
 .env
 .env.local
 .env.*.local
@@ -63,22 +42,17 @@ temp/
 # Docker
 .docker/
 
-# Swagger
-/docs/swagger.json
-/docs/swagger.yaml
-
-# Системные файлы
+# System files
 .DS_Store
 Thumbs.db
 
-# Файлы сборки
+# Build files
 *.o
 *.a
 *.so
 *.dylib
 *.dll
 *.exe
-*.exe~
 *.test
 *.prof
 *.trace

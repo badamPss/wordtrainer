@@ -112,6 +112,10 @@ curl --location 'http://localhost:8080/cards/1' \
 
 Документация API доступна по адресу: http://localhost:8080/swagger/index.html
 
+Полная документация API в формате OpenAPI (Swagger) находится в директории `docs/`:
+- `docs/swagger.json` - документация в формате JSON
+- `docs/swagger.yaml` - документация в формате YAML
+
 ## Управление проектом
 
 - `make up` - поднять проект
@@ -141,6 +145,9 @@ curl --location 'http://localhost:8080/cards/1' \
 │   ├── models/          # Модели данных
 │   └── utils/           # Вспомогательные функции
 ├── docs/                # Swagger документация
+│   ├── docs.go         # Сгенерированный код Swagger
+│   ├── swagger.json    # OpenAPI спецификация (JSON)
+│   └── swagger.yaml    # OpenAPI спецификация (YAML)
 ├── Dockerfile
 ├── docker-compose.yml
 ├── go.mod
