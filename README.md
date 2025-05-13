@@ -8,7 +8,6 @@
   - Регистрации и авторизации пользователей
   - Создания категорий для группировки слов
   - Добавления карточек со словами и их переводами
-  - Отслеживания попыток изучения слов
 - Swagger документация API
 - Готовность к интеграции с фронтендом
 
@@ -107,16 +106,6 @@ curl --location 'http://localhost:8080/cards' \
 ```bash
 curl --location 'http://localhost:8080/cards/1' \
 --header 'Authorization: Bearer YOUR_TOKEN'
-```
-
-#### Добавление попытки изучения
-```bash
-curl --location 'http://localhost:8080/cards/1/attempt' \
---header 'Authorization: Bearer YOUR_TOKEN' \
---header 'Content-Type: application/json' \
---data '{
-    "correct": true
-}'
 ```
 
 ### Swagger UI
